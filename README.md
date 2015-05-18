@@ -17,5 +17,20 @@ or add to `composer.json`
 ## Usage
 
 ```
-echo $form->field($model, 'field')->widget(\consultnn\select2\Select2::className());
+echo $form->field($model, 'attribute')->widget(
+    \consultnn\select2\Select2::className(),
+    [
+        'options' => [
+            'multiple' => true
+        ],
+        'items' => $items, // @see Html::dropDownList() $items argument
+        'pluginOptions' => [
+            'ajax' => [
+                'url' => Url::toRoute(['controller/autoComplete']), // return Json::encode(['results' => [['id' => 1, 'text' => 'text1'], ...]]);
+                'dataType' => 'json'
+            ]
+        ]
+    ]
+);
 ```
+

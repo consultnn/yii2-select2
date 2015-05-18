@@ -10,7 +10,7 @@ use yii\widgets\InputWidget;
 class Select2 extends InputWidget
 {
     /**
-     * @var array Select items
+     * @var array @see Html::dropDownList()
      */
     public $items = [];
 
@@ -36,16 +36,15 @@ class Select2 extends InputWidget
     public $pluginEvents = [];
 
     /**
-     * @var string selector for init js scripts
-     */
-    protected $selector = null;
-
-    /**
      * @inheritdoc
      */
     public function init()
     {
         parent::init();
+
+        if (!empty($this->options['id'])) {
+            $this->setId($this->options['id']);
+        }
 
         if (empty($this->pluginOptions['language'])) {
             $appLanguage = strtolower(substr(Yii::$app->language, 0, 2));
@@ -60,8 +59,6 @@ class Select2 extends InputWidget
      */
     public function run()
     {
-        $this->selector = '#' . $this->options['id'];
-
         if ($this->hasModel()) {
             echo Html::activeDropDownList($this->model, $this->attribute, $this->items, $this->options);
         } else {
@@ -86,7 +83,7 @@ class Select2 extends InputWidget
         }
 
         $options = empty($this->pluginOptions) ? '' : Json::encode($this->pluginOptions);
-        $js = "jQuery('{$this->selector}').select2({$options});";
+        $js = "jQuery('#{$this->getId()}').select2({$options});";
         $view->registerJs($js);
     }
 
@@ -98,7 +95,7 @@ class Select2 extends InputWidget
         if (!empty($this->pluginEvents)) {
             $js = [];
             foreach ($this->pluginEvents as $event => $handler) {
-                $js[] = "jQuery('{$this->selector}').on('{$event}', $handler);";
+                $js[] = "jQuery('#{$this->getId()}').on('{$event}', $handler);";
             }
 
             $this->getView()->registerJs(implode("\n", $js));

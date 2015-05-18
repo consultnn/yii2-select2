@@ -1,0 +1,25 @@
+{
+    "name": "consultnn/yii2-select2",
+    "description": "Yii2 widget wrapper for jquery select2 plugin v4.*",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sokrat",
+            "email": "sergey.sipatov@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=5.4.0",
+      "yiisoft/yii2": "2.0.4",
+      "bower-asset/select2": "4.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "consultnn\\select2\\": "."
+      }
+    },
+    "support": {
+      "email": "tech@consultnn.ru"
+    }
+}

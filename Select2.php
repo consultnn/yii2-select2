@@ -52,6 +52,10 @@ class Select2 extends InputWidget
                 $this->pluginOptions['language'] = $appLanguage;
             }
         }
+
+        if (!$this->options['multiple'] && is_string($this->pluginOptions['placeholder'])) {
+            $this->options['prompt'] = $this->pluginOptions['placeholder'];
+        }
     }
 
     /**

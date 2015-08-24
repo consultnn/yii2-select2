@@ -53,7 +53,7 @@ class Select2 extends InputWidget
             }
         }
 
-        if (!$this->options['multiple'] && is_string($this->pluginOptions['placeholder'])) {
+        if (!empty($this->options['multiple']) && is_string($this->pluginOptions['placeholder'])) {
             $this->options['prompt'] = $this->pluginOptions['placeholder'];
         }
     }
